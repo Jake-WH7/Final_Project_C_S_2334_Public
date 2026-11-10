@@ -40,5 +40,4 @@ public class CustomArrayList<T> {
           "Index: " + index + ", Size: " + size);
     }
   }
-
 }
