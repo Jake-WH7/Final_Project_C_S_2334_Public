@@ -64,7 +64,6 @@ public class CustomArrayList<T> {
   public void add(int index, T element) {
     checkPositionIndex(index);
     ensureCapacity(size + 1);
-    checkPositionIndex(index);
     for (int i = size; i > index; i--) {
       elements[i] = elements[i - 1];
     }
