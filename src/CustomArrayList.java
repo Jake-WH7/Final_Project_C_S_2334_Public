@@ -1,3 +1,5 @@
+import java.util.function.Consumer;
+
 public class CustomArrayList<T> {
   private static final int DEFAULT_CAPACITY = 10;
 
@@ -27,18 +29,18 @@ public class CustomArrayList<T> {
   }
 
   @SuppressWarnings("unchecked")
+  public void forEach(Consumer<? super T> action) {
+    for (int i = 0; i < size; i++) {
+      action.accept((T) elements[i]);
+    }
+  }
+
+  @SuppressWarnings("unchecked")
   public T set(int index, T element) {
     checkElementIndex(index);
     Object elementReplaced = elements[index];
     elements[index] = element;
     return (T) elementReplaced;
-  }
-
-  private void checkElementIndex(int index) {
-    if (index < 0 || index >= size) {
-      throw new IndexOutOfBoundsException(
-          "Index: " + index + ", Size: " + size);
-    }
   }
 
   @SuppressWarnings("unchecked")
@@ -58,7 +60,6 @@ public class CustomArrayList<T> {
     elements[size] = element;
     size++;
     return true;
-
   }
 
   public void add(int index, T element) {
@@ -69,6 +70,13 @@ public class CustomArrayList<T> {
     }
     elements[index] = element;
     size++;
+  }
+
+  private void checkElementIndex(int index) {
+    if (index < 0 || index >= size) {
+      throw new IndexOutOfBoundsException(
+          "Index: " + index + ", Size: " + size);
+    }
   }
 
   private void checkPositionIndex(int index) {
